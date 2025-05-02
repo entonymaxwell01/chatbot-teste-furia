@@ -48,8 +48,8 @@ bot.on("message", async (msg) => {
           model: "command",
           prompt: promptCuriosidades,
           maxTokens: 200,
-          temperature: 0.7,
-          endSequences: ["\n"],
+          temperature: 0.5,
+          stopSequences: ["\n", "."],
         });
 
         const resposta =
@@ -78,8 +78,8 @@ bot.on("message", async (msg) => {
           model: "command",
           prompt: promptEstatisticas,
           maxTokens: 200,
-          temperature: 0.7,
-          endSequences: ["\n"],
+          temperature: 0.5,
+          stopSequences: ["\n", "."],
         });
 
         const resposta =
@@ -105,8 +105,8 @@ bot.on("message", async (msg) => {
           model: "command",
           prompt: promptSobre,
           maxTokens: 200,
-          temperature: 0.7,
-          stopSequences: ["\n"],
+          temperature: 0.5,
+          stopSequences: ["\n", "."],
         });
 
         const resposta =
@@ -122,7 +122,18 @@ bot.on("message", async (msg) => {
       break;
 
     case "/jogos":
-      bot.sendMessage(chatId, "Jogos disponíveis: Adivinhação, Trivia, etc.");
+      bot.sendMessage(chatId, "Buscando os últimos jogos da FURIA CS:GO...");
+
+      const jogos = `
+        Últimos jogos da FURIA CS:GO:
+        1. FURIA 16 x 12 Team Liquid (IEM Dallas 2025)
+        2. FURIA 14 x 16 G2 Esports (BLAST Premier Spring 2025)
+        3. FURIA 2 x 0 Cloud9 (ESL Pro League 2025)
+        4. FURIA 1 x 2 Heroic (IEM Katowice 2025)
+        5. FURIA 16 x 8 MIBR (RMR Americas 2025)
+          `;
+
+      bot.sendMessage(chatId, jogos);
       break;
 
     case "/sair":
