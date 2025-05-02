@@ -1,5 +1,6 @@
 require("dotenv").config();
 const TelegramBot = require("node-telegram-bot-api");
+const http = require("http");
 const { CohereClient } = require("cohere-ai");
 const cohere = new CohereClient({
   token: process.env.COHERE_API_KEY,
@@ -150,3 +151,10 @@ bot.on("message", async (msg) => {
       }
   }
 });
+
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Bot está rodando\n");
+  })
+  .listen(process.env.PORT || 3000);
